@@ -18,8 +18,10 @@
 		</dict>
 	</dict>
 	<key>NSPasteboardUsageDescription</key>
-	<string> &quot;To allow users to copy and paste text between the app and other apps&quot;</string>
-	<key>UISupportsDocumentBrowser</key>
-	<true/>
+	<string> "To allow users to copy and paste text between the app and other apps"</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
 </dict>
 </plist>

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		372BC0A12A5492530050B2D2 /* SpontaneousPaymnetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372BC0A02A5492530050B2D2 /* SpontaneousPaymnetView.swift */; };
+		372BC0A32A5492740050B2D2 /* SpontaneousPaymentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372BC0A22A5492740050B2D2 /* SpontaneousPaymentViewModel.swift */; };
+		372BC0A62A55829B0050B2D2 /* BitcoinDevKit in Frameworks */ = {isa = PBXBuildFile; productRef = 372BC0A52A55829B0050B2D2 /* BitcoinDevKit */; };
+		372BC0A92A5585790050B2D2 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 372BC0A82A5585790050B2D2 /* KeychainSwift */; };
 		AE001CDD29F5EBEC006CA7D1 /* SendConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE001CDC29F5EBEC006CA7D1 /* SendConfirmationView.swift */; };
 		AE0A02242A0AD71900F2479E /* LogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE0A02232A0AD71900F2479E /* LogView.swift */; };
 		AE17E8DA29A402E30058C9C9 /* LDKNodeMondayApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE17E8D929A402E30058C9C9 /* LDKNodeMondayApp.swift */; };
@@ -64,9 +68,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		372BC0A02A5492530050B2D2 /* SpontaneousPaymnetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpontaneousPaymnetView.swift; sourceTree = "<group>"; };
+		372BC0A22A5492740050B2D2 /* SpontaneousPaymentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpontaneousPaymentViewModel.swift; sourceTree = "<group>"; };
+		37EF4A4C2A55A4B0003946A6 /* LDKNodeMondayBittr.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LDKNodeMondayBittr.entitlements; sourceTree = "<group>"; };
 		AE001CDC29F5EBEC006CA7D1 /* SendConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendConfirmationView.swift; sourceTree = "<group>"; };
 		AE0A02232A0AD71900F2479E /* LogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogView.swift; sourceTree = "<group>"; };
-		AE17E8D629A402E30058C9C9 /* LDKNodeMonday.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LDKNodeMonday.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE17E8D629A402E30058C9C9 /* LDKNodeMondayBittr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LDKNodeMondayBittr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE17E8D929A402E30058C9C9 /* LDKNodeMondayApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LDKNodeMondayApp.swift; sourceTree = "<group>"; };
 		AE17E8DB29A402E30058C9C9 /* AddressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressView.swift; sourceTree = "<group>"; };
 		AE17E8DD29A402E40058C9C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -123,9 +130,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				372BC0A92A5585790050B2D2 /* KeychainSwift in Frameworks */,
 				AE7BF29C2A44A24F0030FDE5 /* LDKNode in Frameworks */,
 				AE581D5A2A4214EA0000D979 /* LDKNode in Frameworks */,
 				AE5C4FD829A5577F00BE3285 /* WalletUI in Frameworks */,
+				372BC0A62A55829B0050B2D2 /* BitcoinDevKit in Frameworks */,
 				AEE5B7652A09B1FC001E5E59 /* CodeScanner in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -133,9 +142,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		372BC09D2A5492170050B2D2 /* Spontaneous Payment */ = {
+			isa = PBXGroup;
+			children = (
+				372BC09E2A5492250050B2D2 /* View */,
+				372BC09F2A54922A0050B2D2 /* View Model */,
+			);
+			path = "Spontaneous Payment";
+			sourceTree = "<group>";
+		};
+		372BC09E2A5492250050B2D2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				372BC0A02A5492530050B2D2 /* SpontaneousPaymnetView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		372BC09F2A54922A0050B2D2 /* View Model */ = {
+			isa = PBXGroup;
+			children = (
+				372BC0A22A5492740050B2D2 /* SpontaneousPaymentViewModel.swift */,
+			);
+			path = "View Model";
+			sourceTree = "<group>";
+		};
 		AE17E8CD29A402E30058C9C9 = {
 			isa = PBXGroup;
 			children = (
+				37EF4A4C2A55A4B0003946A6 /* LDKNodeMondayBittr.entitlements */,
 				AE5C4FD429A5565700BE3285 /* README.md */,
 				AE17E8D829A402E30058C9C9 /* LDKNodeMonday */,
 				AE17E8D729A402E30058C9C9 /* Products */,
@@ -146,7 +181,7 @@
 		AE17E8D729A402E30058C9C9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AE17E8D629A402E30058C9C9 /* LDKNodeMonday.app */,
+				AE17E8D629A402E30058C9C9 /* LDKNodeMondayBittr.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -345,6 +380,7 @@
 		AE5C4FD329A5550100BE3285 /* Lightning */ = {
 			isa = PBXGroup;
 			children = (
+				372BC09D2A5492170050B2D2 /* Spontaneous Payment */,
 				AE49E8792A253D43002623E8 /* Lightning Service */,
 				AEBAA4862A01A8FB0042EA82 /* Channel */,
 				AEBAA48A2A01A91C0042EA82 /* Node ID */,
@@ -434,9 +470,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		AE17E8D529A402E30058C9C9 /* LDKNodeMonday */ = {
+		AE17E8D529A402E30058C9C9 /* LDKNodeMondayBittr */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AE17E8E429A402E40058C9C9 /* Build configuration list for PBXNativeTarget "LDKNodeMonday" */;
+			buildConfigurationList = AE17E8E429A402E40058C9C9 /* Build configuration list for PBXNativeTarget "LDKNodeMondayBittr" */;
 			buildPhases = (
 				AE17E8D229A402E30058C9C9 /* Sources */,
 				AE17E8D329A402E30058C9C9 /* Frameworks */,
@@ -446,15 +482,17 @@
 			);
 			dependencies = (
 			);
-			name = LDKNodeMonday;
+			name = LDKNodeMondayBittr;
 			packageProductDependencies = (
 				AE5C4FD729A5577F00BE3285 /* WalletUI */,
 				AEE5B7642A09B1FC001E5E59 /* CodeScanner */,
 				AE581D592A4214EA0000D979 /* LDKNode */,
 				AE7BF29B2A44A24F0030FDE5 /* LDKNode */,
+				372BC0A52A55829B0050B2D2 /* BitcoinDevKit */,
+				372BC0A82A5585790050B2D2 /* KeychainSwift */,
 			);
 			productName = LDKNodeMonday;
-			productReference = AE17E8D629A402E30058C9C9 /* LDKNodeMonday.app */;
+			productReference = AE17E8D629A402E30058C9C9 /* LDKNodeMondayBittr.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -485,12 +523,14 @@
 				AE5C4FD629A5577F00BE3285 /* XCRemoteSwiftPackageReference "WalletUI" */,
 				AEE5B7632A09B1FC001E5E59 /* XCRemoteSwiftPackageReference "CodeScanner" */,
 				AE7BF29A2A44A24F0030FDE5 /* XCRemoteSwiftPackageReference "ldk-node" */,
+				372BC0A42A55829B0050B2D2 /* XCRemoteSwiftPackageReference "bdk-swift" */,
+				372BC0A72A5585790050B2D2 /* XCRemoteSwiftPackageReference "keychain-swift" */,
 			);
 			productRefGroup = AE17E8D729A402E30058C9C9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				AE17E8D529A402E30058C9C9 /* LDKNodeMonday */,
+				AE17E8D529A402E30058C9C9 /* LDKNodeMondayBittr */,
 			);
 		};
 /* End PBXProject section */
@@ -528,6 +568,7 @@
 				AE83142829AEDDAD00088A70 /* SendView.swift in Sources */,
 				AE49E8662A2537D5002623E8 /* PeerViewModel.swift in Sources */,
 				AEBAA4942A01C6BD0042EA82 /* DisconnectView.swift in Sources */,
+				372BC0A12A5492530050B2D2 /* SpontaneousPaymnetView.swift in Sources */,
 				AE49E8682A2537FB002623E8 /* DisconnectViewModel.swift in Sources */,
 				AE94226A2A007D6C007E4F12 /* ChannelsListView.swift in Sources */,
 				AEBAA4832A01A80A0042EA82 /* PeersListView.swift in Sources */,
@@ -540,6 +581,7 @@
 				AEE4CD0129ABC0DB00BF1BF9 /* QRCodeViewBitcoin.swift in Sources */,
 				AE7594812A4FAE0200EAEDA2 /* PaymentsListView.swift in Sources */,
 				AE5849302A2A2B6B00BEF038 /* QRCodeViewLightning.swift in Sources */,
+				372BC0A32A5492740050B2D2 /* SpontaneousPaymentViewModel.swift in Sources */,
 				AE49E85E2A25372D002623E8 /* SendViewModel.swift in Sources */,
 				AE80116929A59918009B9967 /* TabHomeView.swift in Sources */,
 				AEFAF2922A433F6F001128DF /* LightningPaymentStatus.swift in Sources */,
@@ -685,26 +727,28 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = LDKNodeMondayBittr.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"LDKNodeMonday/Preview Content\"";
-				DEVELOPMENT_TEAM = 9G6M658RKZ;
+				DEVELOPMENT_TEAM = 86MNNX5ZSA;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LDKNodeMonday/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Monday;
+				INFOPLIST_KEY_CFBundleDisplayName = MondayLocal;
 				INFOPLIST_KEY_NSCameraUsageDescription = "“To scan QR codes.”";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportsDocumentBrowser = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.matthewramsden.LDKNodeMonday;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bittr.monday;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -717,26 +761,28 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = LDKNodeMondayBittr.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"LDKNodeMonday/Preview Content\"";
-				DEVELOPMENT_TEAM = 9G6M658RKZ;
+				DEVELOPMENT_TEAM = 86MNNX5ZSA;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = LDKNodeMonday/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Monday;
+				INFOPLIST_KEY_CFBundleDisplayName = MondayLocal;
 				INFOPLIST_KEY_NSCameraUsageDescription = "“To scan QR codes.”";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportsDocumentBrowser = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.matthewramsden.LDKNodeMonday;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bittr.monday;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -756,7 +802,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AE17E8E429A402E40058C9C9 /* Build configuration list for PBXNativeTarget "LDKNodeMonday" */ = {
+		AE17E8E429A402E40058C9C9 /* Build configuration list for PBXNativeTarget "LDKNodeMondayBittr" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				AE17E8E529A402E40058C9C9 /* Debug */,
@@ -768,6 +814,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		372BC0A42A55829B0050B2D2 /* XCRemoteSwiftPackageReference "bdk-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/bitcoindevkit/bdk-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.29.0;
+			};
+		};
+		372BC0A72A5585790050B2D2 /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/evgenyneu/keychain-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 20.0.0;
+			};
+		};
 		AE5C4FD629A5577F00BE3285 /* XCRemoteSwiftPackageReference "WalletUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/reez/WalletUI.git";
@@ -795,6 +857,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		372BC0A52A55829B0050B2D2 /* BitcoinDevKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 372BC0A42A55829B0050B2D2 /* XCRemoteSwiftPackageReference "bdk-swift" */;
+			productName = BitcoinDevKit;
+		};
+		372BC0A82A5585790050B2D2 /* KeychainSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 372BC0A72A5585790050B2D2 /* XCRemoteSwiftPackageReference "keychain-swift" */;
+			productName = KeychainSwift;
+		};
 		AE581D592A4214EA0000D979 /* LDKNode */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = LDKNode;

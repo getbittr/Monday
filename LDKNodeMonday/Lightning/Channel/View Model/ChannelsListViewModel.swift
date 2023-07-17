@@ -23,4 +23,12 @@ class ChannelsListViewModel: ObservableObject {
         }
     }
     
+    func updatePayment() {
+            // Here you can add any logic that needs to be executed when the payment has been made.
+            // For now, we are calling listChannels() and getColor() methods.
+            listChannels()
+            getColor()
+        }
+    
+    
 }

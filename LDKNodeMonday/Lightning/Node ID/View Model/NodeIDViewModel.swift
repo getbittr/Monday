@@ -25,4 +25,12 @@ class NodeIDViewModel: ObservableObject {
         }
     }
     
+    func signMessage(message: String) async throws -> String {
+        do {
+            let signedMessage = try await LightningNodeService.shared.signMessage(message: message)
+            return signedMessage
+        } catch {
+            throw error
+        }
+    }
 }

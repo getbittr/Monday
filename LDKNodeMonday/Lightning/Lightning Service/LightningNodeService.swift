@@ -8,20 +8,25 @@
 import Foundation
 import LDKNode
 import SwiftUI
+import BitcoinDevKit
+import KeychainSwift
 
 class LightningNodeService {
     private let ldkNode: LdkNode
+    private let keychain = KeychainSwift()
+    private let mnemonicKey = ""
     private let storageManager = LightningStorage()
+    
     var networkColor = Color.black
     
     class var shared: LightningNodeService {
         struct Singleton {
-            static let instance = LightningNodeService(network: .bitcoin)
+            static let instance = LightningNodeService(network: .testnet)
         }
         return Singleton.instance
     }
     
-    init(network: Network) {
+    init(network: LDKNode.Network) {
         
         try? FileManager.deleteLDKNodeLogLatestFile()
 
@@ -34,8 +39,26 @@ class LightningNodeService {
             walletSyncIntervalSecs: UInt64(20),
             feeRateCacheUpdateIntervalSecs: UInt64(600),
             logLevel: .debug
+//            ,trustedPeers0conf: ["026d74bf2a035b8a14ea7c59f6a0698d019720e812421ec02762fdbf064c3bc326"]
         )
         let nodeBuilder = Builder.fromConfig(config: config)
+        
+//        let mnemonic = "paper mixture charge silly dolphin plug slender escape edge hollow honey anger"
+//        nodeBuilder.setEntropyBip39Mnemonic(mnemonic: mnemonic, passphrase: "")
+                
+        let mnemonicString: String
+        keychain.synchronizable = true
+        if let storedMnemonic = keychain.get(mnemonicKey) {
+            mnemonicString = storedMnemonic
+            print("mnemonicString: \(mnemonicString)")
+        } else {
+            let mnemonic = BitcoinDevKit.Mnemonic.init(wordCount: .words12)
+            mnemonicString = mnemonic.asString()
+            print("mnemonicString: \(mnemonicString)")
+            keychain.set(mnemonicString, forKey: mnemonicKey)
+        }
+
+        nodeBuilder.setEntropyBip39Mnemonic(mnemonic: mnemonicString, passphrase: "")
 
         switch network {
 
@@ -136,6 +159,17 @@ class LightningNodeService {
         return paymentHash
     }
     
+    func signMessage(message: String) async throws -> String {
+        guard let data = message.data(using: .utf8) else {
+            throw NSError(domain: "InvalidInput", code: 0, userInfo: [NSLocalizedDescriptionKey: "Invalid input string. Couldn't convert to UTF8 data."])
+        }
+        
+        let bytes = [UInt8](data)
+        let signedMessage = try ldkNode.signMessage(msg: bytes)
+        
+        return signedMessage
+    }
+    
     func receivePayment(amountMsat: UInt64, description: String, expirySecs: UInt32) async throws -> Invoice {
         let invoice = try ldkNode.receivePayment(amountMsat: amountMsat, description: description, expirySecs: expirySecs)
         return invoice
@@ -151,7 +185,7 @@ class LightningNodeService {
         return channels
     }
     
-    func sendAllToOnchain(address: Address) async throws -> Txid {
+    func sendAllToOnchain(address: LDKNode.Address) async throws -> Txid {
         let txId = try ldkNode.sendAllToOnchainAddress(address: address)
         return txId
     }
@@ -179,12 +213,12 @@ extension LightningNodeService {
         return address
     }
     
-    func sendToOnchainAddress(address: Address, amountMsat: UInt64) throws -> Txid {
+    func sendToOnchainAddress(address: LDKNode.Address, amountMsat: UInt64) throws -> Txid {
         let txId = try ldkNode.sendToOnchainAddress(address: address, amountMsat: amountMsat)
         return txId
     }
     
-    func sendAllToOnchainAddress(address: Address) throws -> Txid {
+    func sendAllToOnchainAddress(address: LDKNode.Address) throws -> Txid {
         let txId = try ldkNode.sendAllToOnchainAddress(address: address)
         return txId
     }

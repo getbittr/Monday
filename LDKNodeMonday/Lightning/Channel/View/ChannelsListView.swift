@@ -16,6 +16,7 @@ struct ChannelsListView: View {
     @State private var isAddChannelPresented = false
     @State private var refreshFlag = false
     @State private var isPaymentsPresented = false
+    @State private var isSpontaneousPaymentPresented = false
     
     var body: some View {
         
@@ -127,6 +128,24 @@ struct ChannelsListView: View {
                         .padding(.horizontal)
                         
                         Spacer()
+                        
+                        Button {
+                            isSpontaneousPaymentPresented = true
+                        } label: {
+                            HStack {
+                                Image(systemName: "bolt.horizontal.circle")
+                                Text("Spontaneous Payment")
+                            }
+                            .frame(width: 200)
+                            .padding(.all, 8)
+                        }
+                        .buttonBorderShape(.capsule)
+                        .buttonStyle(.bordered)
+                        .tint(viewModel.networkColor)
+                        .padding(.horizontal)
+                        
+                        Spacer()
+                        
                         Button {
                             isReceivePresented = true
                         } label: {
@@ -142,6 +161,7 @@ struct ChannelsListView: View {
                         .tint(viewModel.networkColor)
                         .padding(.horizontal)
                     }
+
                     .padding()
                     
                 }
@@ -165,6 +185,13 @@ struct ChannelsListView: View {
                     viewModel.listChannels()
                 }) {
                     ReceiveView(viewModel: .init())
+                        .presentationDetents([.medium, .large])
+                        .presentationDragIndicator(.visible)
+                }
+                .sheet(isPresented: $isSpontaneousPaymentPresented, onDismiss: {
+                    viewModel.updatePayment()
+                }) {
+                    SpontaneousPaymentView(viewModel: .init())
                         .presentationDetents([.medium, .large])
                         .presentationDragIndicator(.visible)
                 }

@@ -1,6 +1,15 @@
 {
   "pins" : [
     {
+      "identity" : "bdk-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/bitcoindevkit/bdk-swift",
+      "state" : {
+        "revision" : "9c69d6255c251ba606e7aad94969c8d24b0ea344",
+        "version" : "0.29.0"
+      }
+    },
+    {
       "identity" : "codescanner",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/twostraws/CodeScanner",
@@ -10,12 +19,21 @@
       }
     },
     {
+      "identity" : "keychain-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/evgenyneu/keychain-swift",
+      "state" : {
+        "revision" : "d108a1fa6189e661f91560548ef48651ed8d93b9",
+        "version" : "20.0.0"
+      }
+    },
+    {
       "identity" : "ldk-node",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/lightningdevkit/ldk-node.git",
       "state" : {
         "branch" : "main",
-        "revision" : "92ff8e93386c9d9ff6b72200f2153f9474abce00"
+        "revision" : "3c7dac9d01ffdf66705b4a27ac699ab3d83c77f6"
       }
     },
     {
