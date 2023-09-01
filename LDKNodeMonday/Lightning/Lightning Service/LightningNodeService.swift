@@ -60,6 +60,63 @@ class LightningNodeService {
 
         nodeBuilder.setEntropyBip39Mnemonic(mnemonic: mnemonicString, passphrase: "")
 
+        // Convert string to Mnemonic
+        // Attempt to create a mnemonic object from the provided mnemonic string
+        do {
+            // ### - THIS IS THE PART THAT HAPPENS ONCE (E.G. ON LOADING THE APP) ###
+            let mnemonic = try BitcoinDevKit.Mnemonic.fromString(mnemonic: mnemonicString)
+
+            // Create a BIP32 extended root key using the mnemonic and a nil password
+            let bip32ExtendedRootKey = DescriptorSecretKey(network: .testnet, mnemonic: mnemonic, password: nil)
+
+            // Create a BIP84 external descriptor using the BIP32 extended root key, specifying the keychain as external and the network as testnet
+            let bip84ExternalDescriptor = Descriptor.newBip84(secretKey: bip32ExtendedRootKey, keychain: .external, network: .testnet)
+
+            // Create a BIP84 internal descriptor using the same BIP32 extended root key, specifying the keychain as internal and the network as testnet
+            let bip84InternalDescriptor = Descriptor.newBip84(secretKey: bip32ExtendedRootKey, keychain: .internal, network: .testnet)
+
+            // Set up the local SQLite database for the Bitcoin wallet using the provided file path
+            let dbPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("bitcoin_wallet.sqlite")
+            let config = SqliteDbConfiguration(path: dbPath.path)
+
+            // Initialize a wallet instance using the BIP84 external and internal descriptors, testnet network, and SQLite database configuration
+            let wallet = try BitcoinDevKit.Wallet.init(descriptor: bip84ExternalDescriptor, changeDescriptor: bip84InternalDescriptor, network: .testnet, databaseConfig: .sqlite(config: config))
+
+            // Configure and create an Electrum blockchain connection to interact with the Bitcoin network
+            let electrum = ElectrumConfig(url: "ssl://electrum.blockstream.info:60002", socks5: nil, retry: 5, timeout: nil, stopGap: 10, validateDomain: true)
+            let blockchainConfig = BlockchainConfig.electrum(config: electrum)
+            let blockchain = try Blockchain(config: blockchainConfig)
+
+            // ### - THIS IS THE PART THAT HAPPENS ONCE (E.G. ON LOADING THE APP) ###
+            
+            // ### - THIS IS THE PART THAT HAPPENS EVERY TIME YOU'D DISPLAY TRANSACTIONS ###
+            
+            // Synchronize the wallet with the blockchain, ensuring transaction data is up to date
+            try wallet.sync(blockchain: blockchain, progress: nil)
+
+            // Uncomment the following lines to get the on-chain balance (although LDK also does that
+            // Get the confirmed balance from the wallet
+            // let balance = try wallet.getBalance().confirmed
+            // print("transactions: \(balance)")
+
+            // Retrieve a list of transaction details from the wallet, excluding raw transaction data
+            let wallet_transactions: [TransactionDetails] = try wallet.listTransactions(includeRaw: false)
+
+            // Print the balance and the list of wallet transactions
+            print("wallet_transactions: \(wallet_transactions)")
+            
+            // ### - THIS IS THE PART THAT HAPPENS EVERY TIME YOU'D DISPLAY TRANSACTIONS ###
+            
+            // Uncomment the following lines to get a new address from the wallet
+            // let new_address = try wallet.getAddress(addressIndex: AddressIndex.new)
+            // print("new_address: \(new_address.address.asString())")
+
+        } catch {
+            // Handle any errors that occur during the execution
+            print("An error occurred: (error)")
+        }
+        
+
         switch network {
 
         case .bitcoin:
